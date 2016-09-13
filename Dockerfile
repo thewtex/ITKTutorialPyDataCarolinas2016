@@ -41,4 +41,6 @@ RUN cd /home/$NB_USER/ && \
     ../../src/ITK && \
   ninja && \
   find . -name '*.o' -delete
+RUN cp /home/jovyan/bin/ITK-build/Wrapping/Generators/Python/WrapITK.pth /opt/conda/lib/python3.5/site-packages
 
+ADD . ./
