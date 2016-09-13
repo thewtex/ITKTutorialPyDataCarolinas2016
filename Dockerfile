@@ -87,4 +87,7 @@ RUN  cd /home/$NB_USER/src && \
     ../../src/ITKBridgeNumPy && \
   ninja && \
   find . -name '*.o' -delete
+
+RUN conda install --yes --quiet -c damianavila82 rise
+
 ADD . ./
