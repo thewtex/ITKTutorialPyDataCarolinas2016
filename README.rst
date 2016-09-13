@@ -33,4 +33,4 @@ Tutorials
 1. `Introduction to the Insight Toolkit (ITK) <1_Introduction_to_the_Insight_Toolkit.ipynb>`__
 2. `Image Filtering <2_Image_Filtering.ipynb>`__
 3. `Image Registration <3_Image_Registration.ipynb>`__
-4. `Open Source, Research, and Commercialization <4_.Open_Source_Research_and_Commercialization.ipynb>`__
+4. `Open Source, Research, and Commercialization <4_Open_Source_Research_and_Commercialization.ipynb>`__
