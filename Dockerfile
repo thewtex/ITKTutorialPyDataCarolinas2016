@@ -90,4 +90,6 @@ RUN  cd /home/$NB_USER/src && \
 
 RUN conda install --yes --quiet -c damianavila82 rise
 
+RUN conda install --yes --quiet -c https://conda.anaconda.org/simpleitk SimpleITK
+
 ADD . ./
