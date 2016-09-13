@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
 
 USER $NB_USER
 
+# ITK
 # master 2016-09-12
 ENV ITK_GIT_TAG f83bfdb890314b663b60e5fb05cd82899a91502f
 RUN cd /home/$NB_USER/ && \
@@ -41,6 +42,49 @@ RUN cd /home/$NB_USER/ && \
     ../../src/ITK && \
   ninja && \
   find . -name '*.o' -delete
-RUN cp /home/jovyan/bin/ITK-build/Wrapping/Generators/Python/WrapITK.pth /opt/conda/lib/python3.5/site-packages
+RUN cp /home/$NB_USER/bin/ITK-build/Wrapping/Generators/Python/WrapITK.pth /opt/conda/lib/python3.5/site-packages
 
+# ITKAnisotropicDiffusionLBR
+# master 2016-07-13
+ENV ITKAnisotropicDiffusionLBR_GIT_TAG c1e74cc933fe86e0738b4df2def965df04c64d3a
+RUN  cd /home/$NB_USER/src && \
+  git clone https://github.com/InsightSoftwareConsortium/ITKAnisotropicDiffusionLBR && \
+  cd ITKAnisotropicDiffusionLBR && \
+  git checkout ${ITKAnisotropicDiffusionLBR_GIT_TAG} && \
+  cd /home/$NB_USER/bin && \
+  mkdir ITKAnisotropicDiffusionLBR-build && \
+  cd ITKAnisotropicDiffusionLBR-build && \
+  cmake \
+    -G Ninja \
+    -DBUILD_TESTING:BOOL=OFF \
+    -DITK_DIR:PATH=/home/$NB_USER/bin/ITK-build \
+    -DPYTHON_EXECUTABLE:FILEPATH=/opt/conda/bin/python \
+    -DPYTHON_INCLUDE_DIR:PATH=/opt/conda/include/python3.5m \
+    -DPYTHON_LIBRARY:FILEPATH=/opt/conda/lib/libpython3.5m.so \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    ../../src/ITKAnisotropicDiffusionLBR && \
+  ninja && \
+  find . -name '*.o' -delete
+
+# ITKBridgeNumPy
+# master 2016-07-13
+ENV ITKBridgeNumPy 99469b9a3bbf95fe29db7ec996a44b73003d767c
+RUN  cd /home/$NB_USER/src && \
+  git clone https://github.com/InsightSoftwareConsortium/ITKBridgeNumPy && \
+  cd ITKBridgeNumPy && \
+  git checkout ${ITKBridgeNumPy_GIT_TAG} && \
+  cd /home/$NB_USER/bin && \
+  mkdir ITKBridgeNumPy-build && \
+  cd ITKBridgeNumPy-build && \
+  cmake \
+    -G Ninja \
+    -DBUILD_TESTING:BOOL=OFF \
+    -DITK_DIR:PATH=/home/$NB_USER/bin/ITK-build \
+    -DPYTHON_EXECUTABLE:FILEPATH=/opt/conda/bin/python \
+    -DPYTHON_INCLUDE_DIR:PATH=/opt/conda/include/python3.5m \
+    -DPYTHON_LIBRARY:FILEPATH=/opt/conda/lib/libpython3.5m.so \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    ../../src/ITKBridgeNumPy && \
+  ninja && \
+  find . -name '*.o' -delete
 ADD . ./
