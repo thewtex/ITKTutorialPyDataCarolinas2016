@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  override:
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker pull insighttoolkit/pydata-carolinas-2016:latest
+    - mkdir -p ~/docker; docker save insighttoolkit/pydata-carolinas-2016 > ~/docker/image.tar
+
+test:
+  override:
+    - docker run -v ~/ITKTutorialPyDataCarolinas2016:/home/jovyan/work/ insighttoolkit/pydata-carolinas-2016 /home/jovyan/work/test.sh
