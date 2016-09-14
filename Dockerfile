@@ -92,4 +92,8 @@ RUN conda install --yes --quiet -c damianavila82 rise
 
 RUN conda install --yes --quiet -c https://conda.anaconda.org/simpleitk SimpleITK
 
+# Don't use the terminal_progress_callback in Jupyter Notebooks
+# We will create a permanent fix for this in upstream ITK
+ADD .support/itkExtras.py /home/jovyan/bin/ITK-build/Wrapping/Generators/Python/itkExtras.py
+
 ADD . ./
