@@ -26,6 +26,8 @@ imaging research and commercial products. We demonstrate how script writing
 and can be used to access the algorithms in ITK and the
 multitude of ITK extensions that are freely available on the web.
 
+.. image:: https://circleci.com/gh/thewtex/ITKTutorialPyDataCarolinas2016.svg?style=svg
+    :target: https://circleci.com/gh/thewtex/ITKTutorialPyDataCarolinas2016
 
 Tutorials
 ---------
